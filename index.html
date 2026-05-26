@@ -83,7 +83,7 @@
         }
 
         /* Lista de Juegos en Fila para Abajo */
-        .games-list {
+        .jgs-list {
             display: flex;
             flex-direction: column;
             width: 100%;
@@ -91,7 +91,7 @@
         }
 
         /* Contenedor Único de Juego */
-        .game-viewport {
+        .jgs-viewport {
             width: 100%;
             background-color: var(--bg-panel);
             border-radius: 12px;
@@ -100,14 +100,14 @@
             border: 1px solid #2d2d34;
         }
 
-        .game-header {
+        .jgs-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
         }
 
-        .game-title {
+        .jgs-title {
             font-size: 1.3rem;
             font-weight: bold;
             color: var(--color-green);
@@ -116,7 +116,7 @@
             gap: 8px;
         }
 
-        .game-title::before {
+        .jgs-title::before {
             content: "●";
             color: var(--color-green);
             animation: pulse 1.5s infinite;
@@ -160,7 +160,7 @@
         }
 
         /* Pantalla de activación manual */
-        .click-to-play {
+        .click-to-plys {
             position: absolute;
             top: 0;
             left: 0;
@@ -176,11 +176,11 @@
             transition: background-color 0.2s;
         }
 
-        .click-to-play:hover {
+        .click-to-plys:hover {
             background-color: #1c1c22;
         }
 
-        .btn-start-game {
+        .btn-start-jgs {
             background-color: var(--color-green);
             color: #000;
             border: none;
@@ -220,32 +220,31 @@
 
     <header>
         <h1>furrywebgm</h1>
-        <p>Tu portal favorito de juegos en la web</p>
+        <p>web de jgs OwO </p>
     </header>
 
     <main>
         <section class="hero">
-            <h2>¡Tu Zona de Juegos IO & Web!</h2>
-            <p>Haz clic en "Iniciar Juego" en cualquiera de los títulos de abajo para cargarlo y ahorrar recursos del sistema.</p>
+            <h2>¡Tu Zona de jgs IO & Web UwU!</h2>
+            <p>Haz clic en "Iniciar jgs" en cualquiera de los títulos de abajo para cargarlo y ahorrar recursos del sistema.</p>
         </section>
 
-        <!-- Lista de juegos en fila para abajo -->
-        <div class="games-list">
-
-            <!-- Juego 1: Eaglercraft -->
+        <!-- Lista de jgs en fila para abajo -->
+        <div class="jgs-list">
+            <!-- Jgs 1: Eaglercraft -->
             <section class="game-viewport">
                 <div class="game-header">
                     <span class="game-title">⛏️ EaglercraftX (Minecraft 1.8.8)</span>
                     <button class="btn-fullscreen" onclick="toggleFullscreen(this)">Pantalla Completa</button>
                 </div>
                 <div class="iframe-wrapper">
-                    <div class="click-to-play" onclick="loadGame(this, 'https://eaglercraft.com')">
-                        <button class="btn-start-game">Iniciar Juego</button>
+                    <div class="click-to-play" onclick="loadGame(this,'https://eaglercraft.com/')">
+                        <button class="btn-start-game">Iniciar Jgs</button>
                     </div>
                 </div>
             </section>
 
-            <!-- Juego 2: PolyTrack -->
+            <!-- Jgs 2: PolyTrack -->
             <section class="game-viewport">
                 <div class="game-header">
                     <span class="game-title">🏎️ PolyTrack 3D</span>
@@ -253,12 +252,12 @@
                 </div>
                 <div class="iframe-wrapper">
                     <div class="click-to-play" onclick="loadGame(this, 'https://polytrackgame.io')">
-                        <button class="btn-start-game">Iniciar Juego</button>
+                        <button class="btn-start-game">Iniciar Jgs</button>
                     </div>
                 </div>
             </section>
 
-            <!-- Juego 3: Front Wars -->
+            <!-- Jgs 3: Front Wars -->
             <section class="game-viewport">
                 <div class="game-header">
                     <span class="game-title">🎮 frontswars.io (v1.8)</span>
@@ -266,12 +265,12 @@
                 </div>
                 <div class="iframe-wrapper">
                     <div class="click-to-play" onclick="loadGame(this, 'https://frontwars.org')">
-                        <button class="btn-start-game">Iniciar Juego</button>
+                        <button class="btn-start-game">Iniciar Jgs</button>
                     </div>
                 </div>
             </section>
 
-            <!-- Juego 4: Territorial.io -->
+            <!-- Jgs 4: Territorial.io -->
             <section class="game-viewport">
                 <div class="game-header">
                     <span class="game-title">🗺️ territorial.io</span>
@@ -279,7 +278,7 @@
                 </div>
                 <div class="iframe-wrapper">
                     <div class="click-to-play" onclick="loadGame(this, 'https://territorial.io')">
-                        <button class="btn-start-game">Iniciar Juego</button>
+                        <button class="btn-start-game">Iniciar Jgs</button>
                     </div>
                 </div>
             </section>
@@ -292,7 +291,7 @@
     </footer>
 
     <script>
-        // Carga el juego solo al hacer clic
+        // Carga el jgs solo al hacer clic
         function loadGame(coverElement, url) {
             const wrapper = coverElement.parentElement;
             const iframe = document.createElement('iframe');
