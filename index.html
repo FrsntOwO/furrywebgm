@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>furrywebgm | Inicio</title>
     <style>
+        /* Paleta Drácula Optimizada */
+        :root {
+            --bg-body: #121214;
+            --bg-panel: #1a1a1e;
+            --color-pink: #ff79c6;
+            --color-cyan: #8be9fd;
+            --color-green: #50fa7b;
+            --color-comment: #6272a4;
+            --color-text: #ffffff;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,29 +24,33 @@
         }
 
         body {
-            background-color: #121214;
-            color: #ffffff;
+            background-color: var(--bg-body);
+            color: var(--color-text);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
         header {
-            background-color: #1a1a1e;
-            padding: 20px;
+            background-color: var(--bg-panel);
+            padding: 25px 20px;
             text-align: center;
-            border-bottom: 3px solid #ff79c6;
+            border-bottom: 3px solid var(--color-pink);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         header h1 {
-            color: #ff79c6;
-            font-size: 2.5rem;
-            letter-spacing: 2px;
+            color: var(--color-pink);
+            font-size: 2.8rem;
+            letter-spacing: 3px;
+            text-transform: lowercase;
+            text-shadow: 0 0 15px rgba(255, 121, 198, 0.3);
         }
 
         header p {
             color: #a9a9b3;
-            margin-top: 5px;
+            margin-top: 8px;
+            font-size: 1rem;
         }
 
         main {
@@ -43,32 +58,84 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px 20px;
-            max-width: 1200px;
+            padding: 30px 20px;
+            max-width: 1100px;
             margin: 0 auto;
             width: 100%;
-            gap: 40px; /* Espacio limpio entre juegos */
+            gap: 25px;
         }
 
         .hero {
             text-align: center;
-            margin-bottom: 10px;
+            max-width: 700px;
         }
 
         .hero h2 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            color: #8be9fd;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: var(--color-cyan);
         }
 
-        .game-container {
+        .hero p {
+            color: #a9a9b3;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Selector de Juegos (Pestañas) */
+        .tabs-container {
+            display: flex;
+            gap: 12px;
             width: 100%;
             max-width: 960px;
-            background-color: #1a1a1e;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+
+        .tabs-container::-webkit-scrollbar {
+            height: 4px;
+        }
+        .tabs-container::-webkit-scrollbar-thumb {
+            background: var(--color-pink);
+            border-radius: 4px;
+        }
+
+        .tab-btn {
+            background-color: var(--bg-panel);
+            color: var(--color-comment);
+            border: 1px solid #333;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            flex: 1;
+            text-align: center;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--color-pink);
+            color: var(--color-text);
+        }
+
+        .tab-btn.active {
+            background-color: var(--color-pink);
+            color: #000000;
+            border-color: var(--color-pink);
+            box-shadow: 0 0 15px rgba(255, 121, 198, 0.4);
+        }
+
+        /* Contenedor Único de Juego */
+        .game-viewport {
+            width: 100%;
+            max-width: 960px;
+            background-color: var(--bg-panel);
             border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-            border: 1px solid #333;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+            border: 1px solid #2d2d34;
         }
 
         .game-header {
@@ -79,9 +146,35 @@
         }
 
         .game-title {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: bold;
-            color: #50fa7b;
+            color: var(--color-green);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .game-title::before {
+            content: "●";
+            color: var(--color-green);
+            animation: pulse 1.5s infinite;
+        }
+
+        .btn-fullscreen {
+            background-color: #2d2d34;
+            color: var(--color-text);
+            border: 1px solid #444;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .btn-fullscreen:hover {
+            background-color: #3e3e4a;
+            border-color: var(--color-cyan);
         }
 
         .iframe-wrapper {
@@ -92,6 +185,7 @@
             overflow: hidden;
             border-radius: 8px;
             background-color: #000;
+            border: 1px solid #121214;
         }
 
         .iframe-wrapper iframe {
@@ -103,13 +197,62 @@
             border: none;
         }
 
+        /* Pantalla de activación manual */
+        .click-to-play {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #151518;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .click-to-play:hover {
+            background-color: #1c1c22;
+        }
+
+        .btn-start-game {
+            background-color: var(--color-green);
+            color: #000;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(80, 250, 123, 0.4);
+            cursor: pointer;
+        }
+
         footer {
-            background-color: #1a1a1e;
+            background-color: var(--bg-panel);
             text-align: center;
-            padding: 15px;
-            color: #6272a4;
+            padding: 20px;
+            color: var(--color-comment);
             font-size: 0.9rem;
-            border-top: 1px solid #333;
+            border-top: 1px solid #2d2d34;
+            margin-top: auto;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+
+        @media (max-width: 650px) {
+            header h1 { font-size: 2rem; }
+            .tabs-container { flex-direction: column; gap: 8px; }
+            .tab-btn { flex: none; width: 100%; }
+            .game-viewport { padding: 10px; }
         }
     </style>
 </head>
@@ -122,33 +265,35 @@
 
     <main>
         <section class="hero">
-            <h2>¡Tu Zona de Juegos IO!</h2>
-            <p>No necesitas descargas. Haz clic en la pantalla de cualquier juego para empezar a jugar directamente desde tu navegador.</p>
+            <h2>¡Tu Zona de Juegos IO & Web!</h2>
+            <p>Selecciona un título abajo. Haz clic en "Iniciar Juego" para activar únicamente ese juego y ahorrar recursos del sistema.</p>
         </section>
 
-        <!-- Bloque de Front Wars -->
-        <section class="game-container">
-            <div class="game-header">
-                <span class="game-title">frontswars.io (v1.8)</span>
-            </div>
-            <div class="iframe-wrapper">
-                <iframe 
-                    src="https://frontwars.org" 
-                    allow="fullscreen; keyboard; mouse-lock" 
-                    scrolling="no">
-                </iframe>
-            </div>
-        </section>
+        <!-- Pestañas para elegir juego -->
+        <nav class="tabs-container">
+            <button class="tab-btn active" onclick="seleccionarPestaña('https://eaglercraft.com', 'EaglercraftX (Minecraft 1.8.8)', this)">⛏️ Eaglercraft 1.8.8</button>
+            <button class="tab-btn" onclick="seleccionarPestaña('https://polytrackgame.io', 'PolyTrack 3D', this)">🏎️ PolyTrack</button>
+            <button class="tab-btn" onclick="seleccionarPestaña('https://frontwars.org', 'frontswars.io (v1.8)', this)">🎮 Front Wars</button>
+            <button class="tab-btn" onclick="seleccionarPestaña('https://territorial.io', 'territorial.io', this)">🗺️ Territorial.io</button>
+        </nav>
 
-        <!-- Bloque de Territorial.io -->
-        <section class="game-container">
+        <!-- Área de juego única -->
+        <section class="game-viewport">
             <div class="game-header">
-                <span class="game-title">territorial.io</span>
+                <span id="current-title" class="game-title">EaglercraftX (Minecraft 1.8.8)</span>
+                <button class="btn-fullscreen" onclick="pantallaCompleta()">📺 Pantalla Completa</button>
             </div>
-            <div class="iframe-wrapper">
+            
+            <div class="iframe-wrapper" id="video-area">
+                <!-- Pantalla de activación manual -->
+                <div id="trigger-screen" class="click-to-play" onclick="activarJuegoActual()">
+                    <button class="btn-start-game">▶ Iniciar Juego</button>
+                </div>
+                
                 <iframe 
-                    src="https://territorial.io" 
-                    allow="fullscreen; keyboard; mouse-lock" 
+                    id="game-frame"
+                    src="" 
+                    allow="fullscreen; keyboard; mouse-lock; autoplay" 
                     scrolling="no">
                 </iframe>
             </div>
@@ -159,5 +304,24 @@
         <p>&copy; 2026 furrywebgm. Todos los derechos reservados.</p>
     </footer>
 
-</body>
-</html>
+    <script>
+        // Variables globales iniciales
+        let urlSeleccionada = 'https://eaglercraft.com';
+        let nombreSeleccionado = 'EaglercraftX (Minecraft 1.8.8)';
+
+        // Cambia la pestaña y DESTRUYE el iframe anterior para liberar memoria RAM
+        function seleccionarPestaña(url, nombre, boton) {
+            document.getElementById('game-frame').src = "";
+            
+            urlSeleccionada = url;
+            nombreSeleccionado = nombre;
+            document.getElementById('current-title').textContent = nombre;
+
+            document.getElementById('trigger-screen').style.display = 'flex';
+
+            const botones = document.querySelectorAll('.tab-btn');
+            botones.forEach(btn => btn.classList.remove('active'));
+            boton.classList.add('active');
+        }
+
+        // Carga el juego seleccionado únicamente cuando el usuario hace clic en el botón
