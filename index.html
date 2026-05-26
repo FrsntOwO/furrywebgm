@@ -14,13 +14,14 @@
             --color-green: #50fa7b;
             --color-comment: #a9a9b3; 
             --color-text: #ffffff;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
@@ -29,28 +30,30 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         header {
             background-color: var(--bg-panel);
-            padding: 25px 20px;
+            padding: 30px 20px;
             text-align: center;
             border-bottom: 3px solid var(--color-pink);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
 
         header h1 {
             color: var(--color-pink);
-            font-size: 2.8rem;
-            letter-spacing: 3px;
+            font-size: 3rem;
+            letter-spacing: 4px;
             text-transform: lowercase;
-            text-shadow: 0 0 15px rgba(255, 121, 198, 0.3);
+            text-shadow: 0 0 20px rgba(255, 121, 198, 0.4);
+            margin-bottom: 5px;
         }
 
         header p {
-            color: #a9a9b3;
-            margin-top: 8px;
-            font-size: 1rem;
+            color: var(--color-comment);
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
         main {
@@ -58,8 +61,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 30px 20px;
-            max-width: 960px;
+            padding: 40px 20px;
+            max-width: 1000px;
             margin: 0 auto;
             width: 100%;
             gap: 40px;
@@ -67,87 +70,123 @@
 
         .hero {
             text-align: center;
-            max-width: 700px;
+            max-width: 750px;
+            background: linear-gradient(135deg, #1a1a1e 0%, #222229 100%);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #2d2d34;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
         }
 
         .hero h2 {
-            font-size: 1.8rem;
-            margin-bottom: 8px;
+            font-size: 2rem;
+            margin-bottom: 12px;
             color: var(--color-cyan);
+            text-shadow: 0 0 10px rgba(139, 233, 253, 0.2);
         }
 
         .hero p {
-            color: #a9a9b3;
-            font-size: 0.95rem;
-            line-height: 1.5;
+            color: var(--color-comment);
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
-        /* Lista de Juegos en Fila para Abajo */
-        .jgs-list {
+        /* Lista de Juegos */
+        .game-list {
             display: flex;
             flex-direction: column;
             width: 100%;
-            gap: 35px;
+            gap: 45px;
         }
 
         /* Contenedor Único de Juego */
-        .jgs-viewport {
+        .game-viewport {
             width: 100%;
             background-color: var(--bg-panel);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
             border: 1px solid #2d2d34;
+            transition: var(--transition-smooth);
         }
 
-        .jgs-header {
+        .game-viewport:hover {
+            transform: translateY(-4px);
+            border-color: #3e3e4a;
+        }
+
+        .game-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
-        .jgs-title {
-            font-size: 1.3rem;
+        .game-title {
+            font-size: 1.4rem;
             font-weight: bold;
             color: var(--color-green);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            text-shadow: 0 0 10px rgba(80, 250, 123, 0.1);
         }
 
-        .jgs-title::before {
+        .game-title::before {
             content: "●";
             color: var(--color-green);
-            animation: pulse 1.5s infinite;
+            animation: pulse 2s infinite;
+            font-size: 0.9rem;
         }
 
         .btn-fullscreen {
             background-color: #2d2d34;
             color: var(--color-text);
             border: 1px solid #444;
-            padding: 8px 16px;
-            border-radius: 6px;
+            padding: 10px 20px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            transition: background-color 0.2s;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .btn-fullscreen:hover {
             background-color: #3e3e4a;
             border-color: var(--color-cyan);
+            color: var(--color-cyan);
+            box-shadow: 0 0 12px rgba(139, 233, 253, 0.2);
         }
 
+        /* Contenedor del Iframe con soporte Fullscreen nativo */
         .iframe-wrapper {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+            padding-bottom: 56.25%; /* Relación 16:9 */
             height: 0;
             overflow: hidden;
-            border-radius: 8px;
-            background-color: #000;
+            border-radius: 12px;
+            background-color: #050506;
             border: 1px solid #121214;
+        }
+
+        /* Ajustes específicos cuando el navegador entra en Fullscreen */
+        .iframe-wrapper:fullscreen {
+            padding-bottom: 0;
+            height: 100vh;
+            width: 100vw;
+            border-radius: 0;
+        }
+        .iframe-wrapper:-webkit-full-screen {
+            padding-bottom: 0;
+            height: 100vh;
+            width: 100vw;
+            border-radius: 0;
         }
 
         .iframe-wrapper iframe {
@@ -157,10 +196,11 @@
             width: 100%;
             height: 100%;
             border: none;
+            background-color: #000;
         }
 
         /* Pantalla de activación manual */
-        .click-to-plys {
+        .click-to-play {
             position: absolute;
             top: 0;
             left: 0;
@@ -173,46 +213,56 @@
             justify-content: center;
             z-index: 10;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: var(--transition-smooth);
         }
 
-        .click-to-plys:hover {
+        .click-to-play:hover {
             background-color: #1c1c22;
         }
 
-        .btn-start-jgs {
+        .btn-start-game {
             background-color: var(--color-green);
             color: #000;
             border: none;
-            padding: 15px 35px;
+            padding: 16px 40px;
             font-size: 1.2rem;
-            font-weight: bold;
+            font-weight: 800;
             border-radius: 8px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 0 20px rgba(80, 250, 123, 0.4);
+            letter-spacing: 1.5px;
+            box-shadow: 0 0 25px rgba(80, 250, 123, 0.3);
             cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .click-to-play:hover .btn-start-game {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(80, 250, 123, 0.5);
         }
 
         footer {
             background-color: var(--bg-panel);
             text-align: center;
-            padding: 20px;
+            padding: 25px;
             color: #6272a4;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             border-top: 1px solid #2d2d34;
             margin-top: auto;
         }
 
         @keyframes pulse {
-            0% { opacity: 0.4; }
-            50% { opacity: 1; }
-            100% { opacity: 0.4; }
+            0% { transform: scale(0.9); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 1; text-shadow: 0 0 8px var(--color-green); }
+            100% { transform: scale(0.9); opacity: 0.5; }
         }
 
-        @media (max-width: 650px) {
-            header h1 { font-size: 2rem; }
-            .game-viewport { padding: 10px; }
+        /* Media Queries Mejoradas */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.4rem; }
+            main { padding: 20px 15px; gap: 30px; }
+            .game-viewport { padding: 16px; }
+            .game-title { font-size: 1.2rem; }
+            .btn-start-game { padding: 12px 28px; font-size: 1rem; }
         }
     </style>
 </head>
@@ -220,69 +270,63 @@
 
     <header>
         <h1>furrywebgm</h1>
-        <p>web de jgs OwO </p>
+        <p>web de jgs OwO</p>
     </header>
 
     <main>
         <section class="hero">
             <h2>¡Tu Zona de jgs IO & Web UwU!</h2>
-            <p>Haz clic en "Iniciar jgs" en cualquiera de los títulos de abajo para cargarlo y ahorrar recursos del sistema.</p>
+            <p>Haz clic en "Iniciar Jgs" en cualquiera de los títulos de abajo para cargarlo de forma dinámica y ahorrar recursos del sistema.</p>
         </section>
 
-        <!-- Lista de jgs en fila para abajo -->
-        <div class="jgs-list">
-            <!-- Jgs 1: Eaglercraft -->
+        <div class="game-list">
             <section class="game-viewport">
                 <div class="game-header">
                     <span class="game-title">⛏️ EaglercraftX (Minecraft 1.8.8)</span>
-                    <button class="btn-fullscreen" onclick="toggleFullscreen(this)">Pantalla Completa</button>
+                    <button class="btn-fullscreen" onclick="toggleFullscreen(this)">⛶ Pantalla Completa</button>
                 </div>
                 <div class="iframe-wrapper">
-                    <div class="click-to-play" onclick="loadGame(this,'https://eaglercraft.com/')">
+                    <div class="click-to-play" onclick="loadGame(this, 'https://g.vseigru.net/games/html5/2024/minecraft-eaglercraft/')">
                         <button class="btn-start-game">Iniciar Jgs</button>
                     </div>
                 </div>
             </section>
 
-            <!-- Jgs 2: PolyTrack -->
             <section class="game-viewport">
                 <div class="game-header">
                     <span class="game-title">🏎️ PolyTrack 3D</span>
-                    <button class="btn-fullscreen" onclick="toggleFullscreen(this)">Pantalla Completa</button>
+                    <button class="btn-fullscreen" onclick="toggleFullscreen(this)">⛶ Pantalla Completa</button>
                 </div>
                 <div class="iframe-wrapper">
-                    <div class="click-to-play" onclick="loadGame(this, 'https://polytrackgame.io')">
+                    <div class="click-to-play" onclick="loadGame(this, 'https://html5.gamedistribution.com/ce37b7ca3b0d4be2bf5f68b31fb5e23b/?gd_sdk_referrer_url=https%3A%2F%2Fpolytrack.io')">
                         <button class="btn-start-game">Iniciar Jgs</button>
                     </div>
                 </div>
             </section>
 
-            <!-- Jgs 3: Front Wars -->
             <section class="game-viewport">
                 <div class="game-header">
                     <span class="game-title">🎮 frontswars.io (v1.8)</span>
-                    <button class="btn-fullscreen" onclick="toggleFullscreen(this)">Pantalla Completa</button>
+                    <button class="btn-fullscreen" onclick="toggleFullscreen(this)">⛶ Pantalla Completa</button>
                 </div>
                 <div class="iframe-wrapper">
-                    <div class="click-to-play" onclick="loadGame(this, 'https://frontwars.org')">
+                    <div class="click-to-play" onclick="loadGame(this, 'https://v6p9d9t4.ssl.hwcdn.net/html/10433292/index.html')">
                         <button class="btn-start-game">Iniciar Jgs</button>
                     </div>
                 </div>
             </section>
 
-            <!-- Jgs 4: Territorial.io -->
             <section class="game-viewport">
                 <div class="game-header">
                     <span class="game-title">🗺️ territorial.io</span>
-                    <button class="btn-fullscreen" onclick="toggleFullscreen(this)">Pantalla Completa</button>
+                    <button class="btn-fullscreen" onclick="toggleFullscreen(this)">⛶ Pantalla Completa</button>
                 </div>
                 <div class="iframe-wrapper">
-                    <div class="click-to-play" onclick="loadGame(this, 'https://territorial.io')">
+                    <div class="click-to-play" onclick="loadGame(this, 'https://territorial.io/display')">
                         <button class="btn-start-game">Iniciar Jgs</button>
                     </div>
                 </div>
             </section>
-
         </div>
     </main>
 
@@ -291,20 +335,27 @@
     </footer>
 
     <script>
-        // Carga el jgs solo al hacer clic
         function loadGame(coverElement, url) {
             const wrapper = coverElement.parentElement;
             const iframe = document.createElement('iframe');
             iframe.src = url;
-            iframe.allow = "fullscreen; autoplay; gamepad";
+            // Importante: añadimos los permisos de sandbox necesarios para que los juegos IO guarden datos
+            iframe.allow = "fullscreen; autoplay; gamepad; keyboard";
+            
             coverElement.remove();
             wrapper.appendChild(iframe);
+            
+            wrapper.setAttribute('data-loaded', 'true');
         }
 
-        // Controla la pantalla completa por juego
         function toggleFullscreen(buttonElement) {
             const viewport = buttonElement.closest('.game-viewport');
             const wrapper = viewport.querySelector('.iframe-wrapper');
+            
+            if (!wrapper.getAttribute('data-loaded')) {
+                alert("Por favor, inicia el juego primero antes de ponerlo en pantalla completa.");
+                return;
+            }
             
             if (!document.fullscreenElement) {
                 wrapper.requestFullscreen().catch(err => {
@@ -314,6 +365,12 @@
                 document.exitFullscreen();
             }
         }
+
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement) {
+                // Control automático
+            }
+        });
     </script>
 </body>
 </html>
