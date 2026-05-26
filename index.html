@@ -12,7 +12,7 @@
             --color-pink: #ff79c6;
             --color-cyan: #8be9fd;
             --color-green: #50fa7b;
-            --color-comment: #a9a9b3; /* Mejorado contraste para accesibilidad */
+            --color-comment: #a9a9b3; 
             --color-text: #ffffff;
         }
 
@@ -59,10 +59,10 @@
             flex-direction: column;
             align-items: center;
             padding: 30px 20px;
-            max-width: 1100px;
+            max-width: 960px;
             margin: 0 auto;
             width: 100%;
-            gap: 25px;
+            gap: 40px;
         }
 
         .hero {
@@ -82,55 +82,17 @@
             line-height: 1.5;
         }
 
-        /* Selector de Juegos (Pestañas) */
-        .tabs-container {
+        /* Lista de Juegos en Fila para Abajo */
+        .games-list {
             display: flex;
-            gap: 12px;
+            flex-direction: column;
             width: 100%;
-            max-width: 960px;
-            overflow-x: auto;
-            padding-bottom: 5px;
-        }
-
-        .tabs-container::-webkit-scrollbar {
-            height: 4px;
-        }
-        .tabs-container::-webkit-scrollbar-thumb {
-            background: var(--color-pink);
-            border-radius: 4px;
-        }
-
-        .tab-btn {
-            background-color: var(--bg-panel);
-            color: var(--color-comment);
-            border: 1px solid #333;
-            padding: 12px 24px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-            flex: 1;
-            text-align: center;
-        }
-
-        .tab-btn:hover {
-            border-color: var(--color-pink);
-            color: var(--color-text);
-        }
-
-        .tab-btn.active {
-            background-color: var(--color-pink);
-            color: #000000;
-            border-color: var(--color-pink);
-            box-shadow: 0 0 15px rgba(255, 121, 198, 0.4);
+            gap: 35px;
         }
 
         /* Contenedor Único de Juego */
         .game-viewport {
             width: 100%;
-            max-width: 960px;
             background-color: var(--bg-panel);
             border-radius: 12px;
             padding: 20px;
@@ -250,8 +212,6 @@
 
         @media (max-width: 650px) {
             header h1 { font-size: 2rem; }
-            .tabs-container { flex-direction: column; gap: 8px; }
-            .tab-btn { flex: none; width: 100%; }
             .game-viewport { padding: 10px; }
         }
     </style>
@@ -266,60 +226,95 @@
     <main>
         <section class="hero">
             <h2>¡Tu Zona de Juegos IO & Web!</h2>
-            <p>Selecciona un título abajo. Haz clic en "Iniciar Juego" para activar únicamente ese juego y ahorrar recursos del sistema.</p>
+            <p>Haz clic en "Iniciar Juego" en cualquiera de los títulos de abajo para cargarlo y ahorrar recursos del sistema.</p>
         </section>
 
-        <!-- Pestañas para elegir juego -->
-        <nav class="tabs-container" aria-label="Selección de juegos">
-            <button class="tab-btn active" onclick="seleccionarPestaña('https://eaglercraft.com', 'EaglercraftX (Minecraft 1.8.8)', this)">⛏️ Eaglercraft 1.8.8</button>
-            <button class="tab-btn" onclick="seleccionarPestaña('https://polytrackgame.io', 'PolyTrack 3D', this)">🏎️ PolyTrack</button>
-            <button class="tab-btn" onclick="seleccionarPestaña('https://frontwars.org', 'frontswars.io (v1.8)', this)">🎮 Front Wars</button>
-            <button class="tab-btn" onclick="seleccionarPestaña('https://territorial.io', 'territorial.io', this)">🗺️ Territorial.io</button>
-        </nav>
+        <!-- Lista de juegos en fila para abajo -->
+        <div class="games-list">
 
-        <!-- Área de juego única -->
-        <section class="game-viewport" id="game-section">
-            <div class="game-header">
-                <span id="current-title" class="game-title">EaglercraftX (Minecraft 1.8.8)</span>
-                <button class="btn-fullscreen" onclick="toggleFullscreen()">Pantalla Completa</button>
-            </div>
-
-            <div class="iframe-wrapper">
-                <!-- Pantalla de inicio manual -->
-                <div id="click-to-play" class="click-to-play" onclick="iniciarJuego()">
-                    <button class="btn-start-game">Iniciar Juego</button>
+            <!-- Juego 1: Eaglercraft -->
+            <section class="game-viewport">
+                <div class="game-header">
+                    <span class="game-title">⛏️ EaglercraftX (Minecraft 1.8.8)</span>
+                    <button class="btn-fullscreen" onclick="toggleFullscreen(this)">Pantalla Completa</button>
                 </div>
-                <!-- Iframe vacío inicialmente para optimizar -->
-                <iframe id="game-iframe" src="" title="Contenedor de juego"></iframe>
-            </div>
-        </section>
+                <div class="iframe-wrapper">
+                    <div class="click-to-play" onclick="loadGame(this, 'https://eaglercraft.com')">
+                        <button class="btn-start-game">Iniciar Juego</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Juego 2: PolyTrack -->
+            <section class="game-viewport">
+                <div class="game-header">
+                    <span class="game-title">🏎️ PolyTrack 3D</span>
+                    <button class="btn-fullscreen" onclick="toggleFullscreen(this)">Pantalla Completa</button>
+                </div>
+                <div class="iframe-wrapper">
+                    <div class="click-to-play" onclick="loadGame(this, 'https://polytrackgame.io')">
+                        <button class="btn-start-game">Iniciar Juego</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Juego 3: Front Wars -->
+            <section class="game-viewport">
+                <div class="game-header">
+                    <span class="game-title">🎮 frontswars.io (v1.8)</span>
+                    <button class="btn-fullscreen" onclick="toggleFullscreen(this)">Pantalla Completa</button>
+                </div>
+                <div class="iframe-wrapper">
+                    <div class="click-to-play" onclick="loadGame(this, 'https://frontwars.org')">
+                        <button class="btn-start-game">Iniciar Juego</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Juego 4: Territorial.io -->
+            <section class="game-viewport">
+                <div class="game-header">
+                    <span class="game-title">🗺️ territorial.io</span>
+                    <button class="btn-fullscreen" onclick="toggleFullscreen(this)">Pantalla Completa</button>
+                </div>
+                <div class="iframe-wrapper">
+                    <div class="click-to-play" onclick="loadGame(this, 'https://territorial.io')">
+                        <button class="btn-start-game">Iniciar Juego</button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 furrywebgm. Todos los derechos reservados.</p>
+        <p>&copy; 2026 furrywebgm - Todos los derechos reservados</p>
     </footer>
 
     <script>
-        // Variables globales para guardar el estado del juego seleccionado
-        let urlActual = 'https://eaglercraft.com';
-        let tituloActual = 'EaglercraftX (Minecraft 1.8.8)';
-
-        function seleccionarPestaña(url, titulo, boton) {
-            // Guardar datos actuales
-            urlActual = url;
-            tituloActual = titulo;
-
-            // Actualizar interfaz del título
-            document.getElementById('current-title').textContent = titulo;
-
-            // Quitar clase activa a todos los botones y ponérsela al seleccionado
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            boton.classList.add('active');
-
-            // Resetear el iframe (ocultar juego y mostrar pantalla de "Iniciar Juego")
-            const iframe = document.getElementById('game-iframe');
-            iframe.src = ""; 
-            document.getElementById('click-to-play').style.display = 'flex';
+        // Carga el juego solo al hacer clic
+        function loadGame(coverElement, url) {
+            const wrapper = coverElement.parentElement;
+            const iframe = document.createElement('iframe');
+            iframe.src = url;
+            iframe.allow = "fullscreen; autoplay; gamepad";
+            coverElement.remove();
+            wrapper.appendChild(iframe);
         }
 
-        function iniciarJuego() {
+        // Controla la pantalla completa por juego
+        function toggleFullscreen(buttonElement) {
+            const viewport = buttonElement.closest('.game-viewport');
+            const wrapper = viewport.querySelector('.iframe-wrapper');
+            
+            if (!document.fullscreenElement) {
+                wrapper.requestFullscreen().catch(err => {
+                    alert(`Error al activar pantalla completa: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>
