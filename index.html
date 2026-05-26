@@ -12,7 +12,7 @@
             --color-pink: #ff79c6;
             --color-cyan: #8be9fd;
             --color-green: #50fa7b;
-            --color-comment: #6272a4;
+            --color-comment: #a9a9b3; /* Mejorado contraste para accesibilidad */
             --color-text: #ffffff;
         }
 
@@ -236,7 +236,7 @@
             background-color: var(--bg-panel);
             text-align: center;
             padding: 20px;
-            color: var(--color-comment);
+            color: #6272a4;
             font-size: 0.9rem;
             border-top: 1px solid #2d2d34;
             margin-top: auto;
@@ -270,7 +270,7 @@
         </section>
 
         <!-- Pestañas para elegir juego -->
-        <nav class="tabs-container">
+        <nav class="tabs-container" aria-label="Selección de juegos">
             <button class="tab-btn active" onclick="seleccionarPestaña('https://eaglercraft.com', 'EaglercraftX (Minecraft 1.8.8)', this)">⛏️ Eaglercraft 1.8.8</button>
             <button class="tab-btn" onclick="seleccionarPestaña('https://polytrackgame.io', 'PolyTrack 3D', this)">🏎️ PolyTrack</button>
             <button class="tab-btn" onclick="seleccionarPestaña('https://frontwars.org', 'frontswars.io (v1.8)', this)">🎮 Front Wars</button>
@@ -278,24 +278,19 @@
         </nav>
 
         <!-- Área de juego única -->
-        <section class="game-viewport">
+        <section class="game-viewport" id="game-section">
             <div class="game-header">
                 <span id="current-title" class="game-title">EaglercraftX (Minecraft 1.8.8)</span>
-                <button class="btn-fullscreen" onclick="pantallaCompleta()">📺 Pantalla Completa</button>
+                <button class="btn-fullscreen" onclick="toggleFullscreen()">Pantalla Completa</button>
             </div>
-            
-            <div class="iframe-wrapper" id="video-area">
-                <!-- Pantalla de activación manual -->
-                <div id="trigger-screen" class="click-to-play" onclick="activarJuegoActual()">
-                    <button class="btn-start-game">▶ Iniciar Juego</button>
+
+            <div class="iframe-wrapper">
+                <!-- Pantalla de inicio manual -->
+                <div id="click-to-play" class="click-to-play" onclick="iniciarJuego()">
+                    <button class="btn-start-game">Iniciar Juego</button>
                 </div>
-                
-                <iframe 
-                    id="game-frame"
-                    src="" 
-                    allow="fullscreen; keyboard; mouse-lock; autoplay" 
-                    scrolling="no">
-                </iframe>
+                <!-- Iframe vacío inicialmente para optimizar -->
+                <iframe id="game-iframe" src="" title="Contenedor de juego"></iframe>
             </div>
         </section>
     </main>
@@ -305,23 +300,26 @@
     </footer>
 
     <script>
-        // Variables globales iniciales
-        let urlSeleccionada = 'https://eaglercraft.com';
-        let nombreSeleccionado = 'EaglercraftX (Minecraft 1.8.8)';
+        // Variables globales para guardar el estado del juego seleccionado
+        let urlActual = 'https://eaglercraft.com';
+        let tituloActual = 'EaglercraftX (Minecraft 1.8.8)';
 
-        // Cambia la pestaña y DESTRUYE el iframe anterior para liberar memoria RAM
-        function seleccionarPestaña(url, nombre, boton) {
-            document.getElementById('game-frame').src = "";
-            
-            urlSeleccionada = url;
-            nombreSeleccionado = nombre;
-            document.getElementById('current-title').textContent = nombre;
+        function seleccionarPestaña(url, titulo, boton) {
+            // Guardar datos actuales
+            urlActual = url;
+            tituloActual = titulo;
 
-            document.getElementById('trigger-screen').style.display = 'flex';
+            // Actualizar interfaz del título
+            document.getElementById('current-title').textContent = titulo;
 
-            const botones = document.querySelectorAll('.tab-btn');
-            botones.forEach(btn => btn.classList.remove('active'));
+            // Quitar clase activa a todos los botones y ponérsela al seleccionado
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             boton.classList.add('active');
+
+            // Resetear el iframe (ocultar juego y mostrar pantalla de "Iniciar Juego")
+            const iframe = document.getElementById('game-iframe');
+            iframe.src = ""; 
+            document.getElementById('click-to-play').style.display = 'flex';
         }
 
-        // Carga el juego seleccionado únicamente cuando el usuario hace clic en el botón
+        function iniciarJuego() {
