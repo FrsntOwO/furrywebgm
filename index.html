@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -290,6 +289,16 @@ footer{
 </div>
 
 <div class="game-card">
+    <div class="game-title">Pokémon Verde Hoja</div>
+    <div class="game-desc">Explora la región de Kanto en la versión clásica Verde Hoja.</div>
+    <button class="start-btn"
+    onclick="startGame(this,'https://onlinemania.es')">
+    ▶ Iniciar juego
+    </button>
+    <iframe class="game-frame" style="display:none;"></iframe>
+</div>
+
+<div class="game-card">
     <div class="game-title">Pokémon Esmeralda</div>
     <div class="game-desc">Explora Hoenn.</div>
     <button class="start-btn"
@@ -304,6 +313,16 @@ footer{
 <h2 class="category-title">🍄 Mario</h2>
 
 <section class="game-grid">
+
+<div class="game-card">
+    <div class="game-title">Super Mario Bros</div>
+    <div class="game-desc">El clásico juego de plataformas de NES de 1985.</div>
+    <button class="start-btn"
+    onclick="startGame(this,'https://onlinemania.es')">
+    ▶ Iniciar juego
+    </button>
+    <iframe class="game-frame" style="display:none;"></iframe>
+</div>
 
 <div class="game-card">
     <div class="game-title">New Super Mario Bros</div>
@@ -335,18 +354,20 @@ footer{
 
 <script>
 function startGame(btn,url){
-
     const card = btn.parentElement;
     const frame = card.querySelector(".game-frame");
 
-    frame.src = url;
-    frame.style.display = "block";
-
-    btn.textContent = "Juego iniciado";
-    btn.disabled = true;
+    if (frame.style.display === "none" || frame.style.display === "") {
+        frame.src = url;
+        frame.style.display = "block";
+        btn.textContent = "⏸ Ocultar juego";
+    } else {
+        frame.src = "";
+        frame.style.display = "none";
+        btn.textContent = "▶ Iniciar juego";
+    }
 }
 </script>
 
 </body>
 </html>
-```
