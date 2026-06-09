@@ -10,11 +10,9 @@
 :root{
     --bg:#181421;
     --panel:#241d33;
-    --card:#2d2440;
     --pink:#ff8fd8;
     --cyan:#8fe7ff;
     --purple:#c8a2ff;
-    --blue:#9ecbff;
     --text:#ffffff;
 }
 
@@ -33,21 +31,13 @@ body{
 
 header{
     background:rgba(36,29,51,.95);
-    backdrop-filter:blur(10px);
-    border-bottom:3px solid var(--pink);
     text-align:center;
     padding:25px;
+    border-bottom:3px solid var(--pink);
 }
 
-h1{
-    font-size:3rem;
-    color:var(--pink);
-}
-
-.subtitle{
-    color:var(--cyan);
-    margin-top:8px;
-}
+h1{color:var(--pink);font-size:3rem;}
+.subtitle{color:var(--cyan);}
 
 main{
     max-width:1200px;
@@ -57,315 +47,136 @@ main{
 
 .hero{
     background:var(--panel);
-    border-radius:20px;
-    padding:25px;
+    padding:20px;
+    border-radius:15px;
     text-align:center;
-    margin-bottom:25px;
-}
-
-.hero h2{
-    color:var(--purple);
-    margin-bottom:10px;
+    margin-bottom:20px;
 }
 
 .category-title{
-    margin-top:40px;
-    margin-bottom:15px;
+    margin-top:30px;
     color:var(--cyan);
     border-left:5px solid var(--pink);
-    padding-left:15px;
-}
-
-.game-grid{
-    display:flex;
-    flex-direction:column;
-    gap:20px;
+    padding-left:10px;
 }
 
 .game-card{
     background:rgba(45,36,64,.95);
-    border:1px solid rgba(255,143,216,.3);
-    border-radius:20px;
     padding:20px;
-    box-shadow:0 0 20px rgba(255,143,216,.15);
-}
-
-.game-card:hover{
-    border-color:var(--pink);
-    box-shadow:0 0 30px rgba(255,143,216,.4);
-}
-
-.game-title{
-    color:var(--cyan);
-    font-size:1.3rem;
-    font-weight:bold;
-    margin-bottom:8px;
-}
-
-.game-desc{
-    opacity:.9;
-    margin-bottom:15px;
+    margin-top:15px;
+    border-radius:15px;
 }
 
 .start-btn{
     width:100%;
+    padding:12px;
     border:none;
-    padding:14px;
-    border-radius:12px;
-    font-weight:bold;
+    border-radius:10px;
     cursor:pointer;
+    font-weight:bold;
     color:white;
-    background:linear-gradient(
-        90deg,
-        var(--pink),
-        var(--purple)
-    );
+    background:linear-gradient(90deg,var(--pink),var(--purple));
 }
 
 .game-frame{
     width:100%;
-    height:600px;
+    height:500px;
     border:none;
-    border-radius:15px;
-    margin-top:15px;
-    background:#000;
+    margin-top:10px;
+    border-radius:10px;
+    display:none;
 }
 
-footer{
-    margin-top:40px;
-    background:var(--panel);
-    text-align:center;
-    padding:20px;
-}
-
-@media (max-width:768px){
-
-    h1{
-        font-size:2rem;
-    }
-
-    main{
-        padding:12px;
-    }
-
-    .game-frame{
-        height:320px;
-    }
-
-    .category-title{
-        font-size:1.3rem;
-    }
+/* BOTÓN LOGROS */
+.ach-btn{
+    display:inline-block;
+    margin-top:10px;
+    padding:10px 15px;
+    border-radius:10px;
+    background:#ff8fd8;
+    color:black;
+    font-weight:bold;
+    text-decoration:none;
 }
 </style>
 </head>
+
 <body>
 
 <header>
     <h1>🦊 FurryWebGM</h1>
-    <p class="subtitle">
-        🎮 Jgm•  ✨ Diversión online UwU
-    </p>
+    <p class="subtitle">🎮 Portal de juegos</p>
 </header>
 
 <main>
 
 <section class="hero">
-    <h2>🎮 Portal de Juegos</h2>
-    <p>Pulsa "Iniciar juego" para cargarlo dentro de la página.</p>
+    <h2>🎮 Juegos</h2>
+    <p>Explora y desbloquea logros 🏆</p>
+
+    <!-- LINK A LOGROS -->
+    <a class="ach-btn" href="logros.html">🏆 Ver Logros</a>
 </section>
 
 <h2 class="category-title">⛏️ Sandbox</h2>
 
-<section class="game-grid">
-
 <div class="game-card">
-    <div class="game-title">Eaglercraft</div>
-    <div class="game-desc">Minecraft en navegador.</div>
-    <button class="start-btn"
-    onclick="startGame(this,'https://eaglercraft.com/play')">
-    ▶ Iniciar juego
-    </button>
-    <iframe class="game-frame" style="display:none;"></iframe>
+    <h3>Eaglercraft</h3>
+    <button class="start-btn" onclick="startGame(this,'https://eaglercraft.com/play')">▶ Iniciar</button>
+    <iframe class="game-frame"></iframe>
 </div>
-
-</section>
 
 <h2 class="category-title">🏎️ Carreras</h2>
 
-<section class="game-grid">
-
 <div class="game-card">
-    <div class="game-title">PolyTrack</div>
-    <div class="game-desc">Carreras rápidas estilo Trackmania.</div>
-    <button class="start-btn"
-    onclick="startGame(this,'https://app-polytrack.kodub.com/0.5.0/?')">
-    ▶ Iniciar juego
-    </button>
-    <iframe class="game-frame" style="display:none;"></iframe>
+    <h3>PolyTrack</h3>
+    <button class="start-btn" onclick="startGame(this,'https://app-polytrack.kodub.com/0.5.0/?')">▶ Iniciar</button>
+    <iframe class="game-frame"></iframe>
 </div>
 
 <div class="game-card">
-    <div class="game-title">HexGL</div>
-    <div class="game-desc">Carreras futuristas en 3D.</div>
-    <button class="start-btn"
-    onclick="startGame(this,'https://hexgl.bkcore.com/play/')">
-    ▶ Iniciar juego
-    </button>
-    <iframe class="game-frame" style="display:none;"></iframe>
+    <h3>HexGL</h3>
+    <button class="start-btn" onclick="startGame(this,'https://hexgl.bkcore.com/play/')">▶ Iniciar</button>
+    <iframe class="game-frame"></iframe>
 </div>
 
-</section>
-
-<h2 class="category-title">🧟 Estrategia</h2>
-
-<section class="game-grid">
+<h2 class="category-title">🟢 .IO</h2>
 
 <div class="game-card">
-    <div class="game-title">Plants vs Zombies Web</div>
-    <div class="game-desc">Defiende tu jardín.</div>
-    <button class="start-btn"
-    onclick="startGame(this,'https://pvzonline.com')">
-    ▶ Iniciar juego
-    </button>
-    <iframe class="game-frame" style="display:none;"></iframe>
+    <h3>Agar.io</h3>
+    <button class="start-btn" onclick="startGame(this,'https://agar.io')">▶ Iniciar</button>
+    <iframe class="game-frame"></iframe>
 </div>
-
-</section>
-
-<h2 class="category-title">🟢 Juegos .IO</h2>
-
-<section class="game-grid">
-
-<div class="game-card">
-    <div class="game-title">Agar.io</div>
-    <div class="game-desc">Crece y domina el mapa.</div>
-    <button class="start-btn"
-    onclick="startGame(this,'https://agar.io')">
-    ▶ Iniciar juego
-    </button>
-    <iframe class="game-frame" style="display:none;"></iframe>
-</div>
-
-</section>
-
-<h2 class="category-title">🍪 Casual</h2>
-
-<section class="game-grid">
-
-<div class="game-card">
-    <div class="game-title">Cookie Clicker</div>
-    <div class="game-desc">Imperio de galletas.</div>
-    <button class="start-btn"
-    onclick="startGame(this,'https://orteil.dashnet.org/cookieclicker/')">
-    ▶ Iniciar juego
-    </button>
-    <iframe class="game-frame" style="display:none;"></iframe>
-</div>
-
-<div class="game-card">
-    <div class="game-title">2048</div>
-    <div class="game-desc">Llega a 2048.</div>
-    <button class="start-btn"
-    onclick="startGame(this,'https://play2048.co/')">
-    ▶ Iniciar juego
-    </button>
-    <iframe class="game-frame" style="display:none;"></iframe>
-</div>
-
-</section>
-
-<h2 class="category-title">⚡ Pokémon</h2>
-
-<section class="game-grid">
-
-<div class="game-card">
-    <div class="game-title">Pokémon Rojo Fuego</div>
-    <div class="game-desc">Explora Kanto.</div>
-    <button class="start-btn"
-    onclick="startGame(this,'https://www.onlinemania.es/file.php?f=8265&iframe=1')">
-    ▶ Iniciar juego
-    </button>
-    <iframe class="game-frame" style="display:none;"></iframe>
-</div>
-
-<div class="game-card">
-    <div class="game-title">Pokémon Verde Hoja</div>
-    <div class="game-desc">Explora la región de Kanto en la versión clásica Verde Hoja.</div>
-    <button class="start-btn"
-    onclick="startGame(this,'https://onlinemania.es')">
-    ▶ Iniciar juego
-    </button>
-    <iframe class="game-frame" style="display:none;"></iframe>
-</div>
-
-<div class="game-card">
-    <div class="game-title">Pokémon Esmeralda</div>
-    <div class="game-desc">Explora Hoenn.</div>
-    <button class="start-btn"
-    onclick="startGame(this,'https://www.onlinemania.es/file.php?f=8266&iframe=1')">
-    ▶ Iniciar juego
-    </button>
-    <iframe class="game-frame" style="display:none;"></iframe>
-</div>
-
-</section>
-
-<h2 class="category-title">🍄 Mario</h2>
-
-<section class="game-grid">
-
-<div class="game-card">
-    <div class="game-title">Super Mario Bros</div>
-    <div class="game-desc">El clásico juego de plataformas de NES de 1985.</div>
-    <button class="start-btn"
-    onclick="startGame(this,'https://onlinemania.es')">
-    ▶ Iniciar juego
-    </button>
-    <iframe class="game-frame" style="display:none;"></iframe>
-</div>
-
-<div class="game-card">
-    <div class="game-title">New Super Mario Bros</div>
-    <div class="game-desc">Aventura clásica de Mario.</div>
-    <button class="start-btn"
-    onclick="startGame(this,'https://www.onlinemania.es/file.php?f=25428&iframe=1')">
-    ▶ Iniciar juego
-    </button>
-    <iframe class="game-frame" style="display:none;"></iframe>
-</div>
-
-<div class="game-card">
-    <div class="game-title">Super Mario 64</div>
-    <div class="game-desc">Consigue todas las estrellas.</div>
-    <button class="start-btn"
-    onclick="startGame(this,'https://www.onlinemania.es/file.php?f=4269&iframe=1')">
-    ▶ Iniciar juego
-    </button>
-    <iframe class="game-frame" style="display:none;"></iframe>
-</div>
-
-</section>
 
 </main>
 
-<footer>
-© 2026 FurryWebGM
-</footer>
-
 <script>
 function startGame(btn,url){
-    const card = btn.parentElement;
-    const frame = card.querySelector(".game-frame");
+    const frame = btn.parentElement.querySelector(".game-frame");
 
-    if (frame.style.display === "none" || frame.style.display === "") {
-        frame.src = url;
-        frame.style.display = "block";
-        btn.textContent = "⏸ Ocultar juego";
-    } else {
-        frame.src = "";
-        frame.style.display = "none";
-        btn.textContent = "▶ Iniciar juego";
+    if(frame.style.display==="block"){
+        frame.style.display="none";
+        frame.src="";
+        btn.textContent="▶ Iniciar";
+    }else{
+        frame.style.display="block";
+        frame.src=url;
+        btn.textContent="⏸ Ocultar";
+
+        unlock("s1");
     }
+
+    unlock("s2");
+}
+
+/* guardado */
+let unlocked = JSON.parse(localStorage.getItem("furryAch")||"[]");
+
+function unlock(id){
+    if(unlocked.includes(id)) return;
+
+    unlocked.push(id);
+    localStorage.setItem("furryAch",JSON.stringify(unlocked));
 }
 </script>
 
