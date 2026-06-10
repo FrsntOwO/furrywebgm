@@ -75,22 +75,28 @@ a{
 
 <script>
 const achievements = {
-    s1:"🎮 Primer Juego iniciado",
-    s2:"🖱️ Interacción con la web"
+    first_game: "🎮 Primer juego iniciado"
 };
 
-let unlocked = JSON.parse(localStorage.getItem("furryAch")||"[]");
+let unlocked = [];
+
+try {
+    unlocked = JSON.parse(localStorage.getItem("furryAch") || "[]");
+    if(!Array.isArray(unlocked)) unlocked = [];
+} catch(e){
+    unlocked = [];
+}
 
 const box = document.getElementById("box");
+box.innerHTML = "";
 
-if(unlocked.length===0){
-    box.innerHTML="Sin logros aún 🐾";
+if(unlocked.length === 0){
+    box.innerHTML = "Sin logros aún 🐾";
 }else{
-    box.innerHTML="";
     unlocked.forEach(id=>{
-        const div=document.createElement("div");
-        div.className="ach";
-        div.textContent=achievements[id]||"Logro desconocido";
+        const div = document.createElement("div");
+        div.className = "ach";
+        div.textContent = achievements[id] || ("🔓 Logro desconocido: " + id);
         box.appendChild(div);
     });
 }
