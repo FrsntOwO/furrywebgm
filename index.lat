@@ -237,26 +237,40 @@ frame.src=url;
 const codes = {
 
 /* FURRY */
-"uwu":"🦊 Furry nivel 1",
-"owo":"🐾 Furry nivel 2",
-"protogen":"🤖 furry cyborg",
+"uwu":"🦊 Fursuit Nivel 1",
+"owo":"🐾 Convención Secreta",
+"beans":"🐾 Almohadillas Legendarias",
+"tail":"🦊 Cola Esponjosa",
+"howl":"🐺 Aullido Nocturno",
+"yeen":"🐺 Caos Hiena",
+"foxo":"🦊 Espíritu del Zorro",
+"protogen":"🤖 Visitante Cibernético",
+"dragon":"🐉 Escamas Antiguas",
 
 /* GLITCH */
-"kit":"📺🛸GameOverse",
+"gameoverse":"📺 Error del Multiverso",
+"glitch":"🌀 Entre Canales",
+"signal":"⚠️ Señal Corrupta",
 "static":"📼 Ruido Eterno",
 "vhs":"📼 Archivo Analógico",
 "404tv":"📺 Canal Perdido",
 "corrupt":"💾 Datos Dañados",
 
 /* MEMES */
+"meme":"🗿 Furro Legendario",
 "internet":"😂 Demasiado Internet",
-"cheems":"vuela alto cheems🪽",
-"doge":"🐕 Sabiduría Antigua
+"cheems":"📸 Coleccionista de Memes",
+"doge":"🐕 Sabiduría Antigua",
+"sus":"🚨 Sospechoso",
+"brainrot":"🧠 Daño de Internet",
 
 /* EXPERIMENTO */
-"changed":"el juego fav de algunos furries",
-"puro":"un furry de latex amigable",
-"colin":"humano amigo de puro"
+"changed":"🧪 Sujeto de Pruebas",
+"latex":"⚫ Contacto Inesperado",
+"lab":"🔬 Laboratorio Oculto",
+"sample":"🧫 Muestra Desconocida",
+"containment":"🚪 Zona Sellada",
+"blackgoo":"⚫ Materia Extraña",
 
 /* SECRETOS */
 "secret":"👁️ No Debías Ver Esto",
@@ -264,14 +278,14 @@ const codes = {
 "admin":"🔒 Acceso Administrativo",
 "developer":"🛠 Modo Desarrollador",
 "easteregg":"🥚 Cazador de Secretos",
-"furrywebgm":"una web de un furry para jugar en clase",
+"furrywebgm":"👑 Guardián del Portal",
 "all":"🌌 Maestro de los Secretos",
 
 /* BONUS */
 "konami":"🎮 Código Legendario",
 "void":"🌌 Vacío Total",
 "exit":"🚪 Salida Oculta",
-"uwuowo":"🦊🐾 Furry nivel max",
+"uwuowo":"🦊🐾 Forma Final"
 };
 
 let unlocked = JSON.parse(localStorage.getItem("fwgm") || "[]");
