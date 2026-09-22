@@ -80,6 +80,14 @@ background:linear-gradient(90deg,var(--pink),var(--purple));
 cursor:pointer;
 color:white;
 margin-top:10px;
+font-weight: bold;
+text-align: center;
+text-decoration: none;
+display: block;
+}
+
+.start-btn:hover{
+opacity: 0.9;
 }
 
 .game-frame{
@@ -130,26 +138,26 @@ padding:20px;
 
 <div class="game-card">
 <div class="game-title">Super Mario Bros</div>
-<button class="start-btn" onclick="startGame(this,'https://www.onlinemania.es/file.php?f=1288&iframe=1')">▶ Jugar</button>
-<iframe class="game-frame"></iframe>
+<button class="start-btn" onclick="startGame(this,'https://vgames.jp/embed/super-mario-bros')">▶ Jugar</button>
+<iframe class="game-frame" allowfullscreen></iframe>
 </div>
 
 <div class="game-card">
 <div class="game-title">Super Mario 64</div>
-<button class="start-btn" onclick="startGame(this,'https://www.onlinemania.es/file.php?f=4269&iframe=1')">▶ Jugar</button>
-<iframe class="game-frame"></iframe>
+<button class="start-btn" onclick="startGame(this,'https://vgames.jp/embed/super-mario-64')">▶ Jugar</button>
+<iframe class="game-frame" allowfullscreen></iframe>
 </div>
 
 <div class="game-card">
 <div class="game-title">Pokémon Fuego Rojo</div>
-<button class="start-btn" onclick="startGame(this,'https://www.onlinemania.es/file.php?f=8265&iframe=1')">▶ Jugar</button>
-<iframe class="game-frame"></iframe>
+<button class="start-btn" onclick="startGame(this,'https://vgames.jp/embed/pokemon-fire-red-version')">▶ Jugar</button>
+<iframe class="game-frame" allowfullscreen></iframe>
 </div>
 
 <div class="game-card">
 <div class="game-title">Pokémon Verde Hoja</div>
-<button class="start-btn" onclick="startGame(this,'https://www.onlinemania.es/file.php?f=8268&iframe=1')">▶ Jugar</button>
-<iframe class="game-frame"></iframe>
+<button class="start-btn" onclick="startGame(this,'https://vgames.jp/embed/pokemon-leaf-green-version')">▶ Jugar</button>
+<iframe class="game-frame" allowfullscreen></iframe>
 </div>
 
 </div>
@@ -161,44 +169,39 @@ padding:20px;
 
 <div class="game-card">
 <div class="game-title">Eaglercraft</div>
-<button class="start-btn" onclick="startGame(this,'https://eaglercraft.com/play')">▶ Jugar</button>
-<iframe class="game-frame"></iframe>
+<a class="start-btn" href="https://eaglercraft.com/play" target="_blank" rel="noopener noreferrer">🚀 Abrir Juego (Nueva Pestaña)</a>
 </div>
 
 <div class="game-card">
 <div class="game-title">PolyTrack</div>
-<button class="start-btn" onclick="startGame(this,'https://app-polytrack.kodub.com/0.5.0/?')">▶ Jugar</button>
-<iframe class="game-frame"></iframe>
+<a class="start-btn" href="https://app-polytrack.kodub.com/0.5.0/?" target="_blank" rel="noopener noreferrer">🚀 Abrir Juego (Nueva Pestaña)</a>
 </div>
 
 <div class="game-card">
 <div class="game-title">HexGL</div>
-<button class="start-btn" onclick="startGame(this,'https://hexgl.bkcore.com/play/')">▶ Jugar</button>
-<iframe class="game-frame"></iframe>
+<button class="start-btn" onclick="startGame(this,'https://hexgl.bkcore.com/play/')">▶ Jugar en Pantalla</button>
+<iframe class="game-frame" allowfullscreen></iframe>
 </div>
 
 <div class="game-card">
 <div class="game-title">Plants vs Zombies</div>
-<button class="start-btn" onclick="startGame(this,'https://pvzonline.com')">▶ Jugar</button>
-<iframe class="game-frame"></iframe>
+<a class="start-btn" href="https://www.pvz.io/" target="_blank" rel="noopener noreferrer">🚀 Abrir Juego (Nueva Pestaña)</a>
 </div>
 
 <div class="game-card">
 <div class="game-title">Agar.io</div>
-<button class="start-btn" onclick="startGame(this,'https://agar.io')">▶ Jugar</button>
-<iframe class="game-frame"></iframe>
+<a class="start-btn" href="https://agar.io" target="_blank" rel="noopener noreferrer">🚀 Abrir Juego (Nueva Pestaña)</a>
 </div>
 
 <div class="game-card">
 <div class="game-title">Cookie Clicker</div>
-<button class="start-btn" onclick="startGame(this,'https://orteil.dashnet.org/cookieclicker/')">▶ Jugar</button>
-<iframe class="game-frame"></iframe>
+<a class="start-btn" href="https://orteil.dashnet.org/cookieclicker/" target="_blank" rel="noopener noreferrer">🚀 Abrir Juego (Nueva Pestaña)</a>
 </div>
 
 <div class="game-card">
 <div class="game-title">2048</div>
-<button class="start-btn" onclick="startGame(this,'https://play2048.co/')">▶ Jugar</button>
-<iframe class="game-frame"></iframe>
+<button class="start-btn" onclick="startGame(this,'https://play2048.co/')">▶ Jugar en Pantalla</button>
+<iframe class="game-frame" allowfullscreen></iframe>
 </div>
 
 </div>
@@ -212,7 +215,7 @@ padding:20px;
 
 <button class="start-btn" onclick="redeemCode()">🔑 Canjear</button>
 
-<p id="progressText"></p>
+<p id="progressText" style="margin-top:10px;"></p>
 
 <div id="achievementsBox"></div>
 
@@ -229,8 +232,10 @@ padding:20px;
 /* 🎮 JUEGOS */
 function startGame(btn,url){
 const frame=btn.parentElement.querySelector("iframe");
+if(frame){
 frame.style.display="block";
 frame.src=url;
+}
 }
 
 /* 🏆 CÓDIGOS + LOGROS */
