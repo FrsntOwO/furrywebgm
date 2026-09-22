@@ -48,64 +48,76 @@ padding:20px;
 
 .category-title{
 margin-top:40px;
+margin-bottom:20px;
 color:var(--cyan);
 border-left:5px solid var(--pink);
 padding-left:15px;
+font-size:1.5rem;
 }
 
+/* Sistema de Rejilla para Tarjetas */
 .game-grid{
-display:flex;
-flex-direction:column;
+display:grid;
+grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 gap:20px;
 }
 
 .game-card{
-background:#2d2440;
+background:var(--card);
 border-radius:20px;
 padding:20px;
 border:1px solid rgba(255,143,216,.3);
+display:flex;
+flex-direction:column;
+justify-content:space-between;
 }
 
 .game-title{
 color:var(--cyan);
 font-size:1.2rem;
+font-weight:bold;
+margin-bottom:10px;
 }
 
 .start-btn{
 width:100%;
-padding:14px;
+padding:12px;
 border:none;
 border-radius:12px;
 background:linear-gradient(90deg,var(--pink),var(--purple));
 cursor:pointer;
 color:white;
-margin-top:10px;
-font-weight: bold;
-text-align: center;
-text-decoration: none;
-display: block;
+font-weight:bold;
+text-align:center;
+text-decoration:none;
+display:block;
+box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
 .start-btn:hover{
 opacity: 0.9;
+transform: translateY(-2px);
 }
 
 .game-frame{
 width:100%;
-height:520px;
+height:450px;
 margin-top:15px;
 border:none;
 border-radius:15px;
 display:none;
 background:black;
+grid-column: 1 / -1; /* Ocupa todo el ancho si se abre un marco */
 }
 
 input{
 width:100%;
-padding:10px;
+padding:12px;
 border-radius:10px;
 border:none;
 margin-top:10px;
+background: #181421;
+color: white;
 }
 
 footer{
@@ -115,8 +127,11 @@ text-align:center;
 padding:20px;
 }
 
-/* iPad */
+/* Responsivo */
 @media (max-width:768px){
+.game-grid{
+grid-template-columns: 1fr;
+}
 .game-frame{height:320px;}
 }
 </style>
@@ -131,91 +146,126 @@ padding:20px;
 
 <main>
 
-<!-- RETRO -->
-<h2 class="category-title">🎮 Retro OnlineMania</h2>
-
+<!-- CATEGORÍA 1: RETRO -->
+<h2 class="category-title">🕹️ Clásicos Retro</h2>
 <div class="game-grid">
 
 <div class="game-card">
+<div class="game-title">Tetris</div>
+<button class="start-btn" onclick="startGame(this,'https://chvin.github.io/react-tetris/')">▶ Jugar en pantalla</button>
+</div>
+
+<div class="game-card">
+<div class="game-title">Mario Kart 64</div>
+<button class="start-btn" onclick="startGame(this,'https://www.retrogames.cc/embed/9378-mario-kart-64.html')">▶ Jugar en pantalla</button>
+</div>
+
+<div class="game-card">
 <div class="game-title">Super Mario Bros</div>
-<button class="start-btn" onclick="startGame(this,'https://vgames.jp/embed/super-mario-bros')">▶ Jugar</button>
-<iframe class="game-frame" allowfullscreen></iframe>
+<button class="start-btn" onclick="startGame(this,'https://www.retrogames.cc/embed/16847-super-mario-bros.html')">▶ Jugar en pantalla</button>
 </div>
 
 <div class="game-card">
 <div class="game-title">Super Mario 64</div>
-<button class="start-btn" onclick="startGame(this,'https://vgames.jp/embed/super-mario-64')">▶ Jugar</button>
-<iframe class="game-frame" allowfullscreen></iframe>
+<button class="start-btn" onclick="startGame(this,'https://www.retrogames.cc/embed/10892-super-mario-64.html')">▶ Jugar en pantalla</button>
 </div>
 
 <div class="game-card">
 <div class="game-title">Pokémon Fuego Rojo</div>
-<button class="start-btn" onclick="startGame(this,'https://vgames.jp/embed/pokemon-fire-red-version')">▶ Jugar</button>
-<iframe class="game-frame" allowfullscreen></iframe>
+<button class="start-btn" onclick="startGame(this,'https://www.retrogames.cc/embed/20421-pokemon-fire-red-version.html')">▶ Jugar en pantalla</button>
 </div>
 
 <div class="game-card">
 <div class="game-title">Pokémon Verde Hoja</div>
-<button class="start-btn" onclick="startGame(this,'https://vgames.jp/embed/pokemon-leaf-green-version')">▶ Jugar</button>
-<iframe class="game-frame" allowfullscreen></iframe>
+<button class="start-btn" onclick="startGame(this,'https://www.retrogames.cc/embed/20422-pokemon-leaf-green-version.html')">▶ Jugar en pantalla</button>
 </div>
 
 </div>
+<iframe id="retro-frame" class="game-frame" allowfullscreen></iframe>
 
-<!-- TUS JUEGOS -->
-<h2 class="category-title">🕹️ Tus juegos</h2>
-
+<!-- CATEGORÍA 2: MULTIJUGADOR ONLINE -->
+<h2 class="category-title">🌐 Multijugador .IO & Fiesta</h2>
 <div class="game-grid">
 
 <div class="game-card">
-<div class="game-title">Eaglercraft</div>
-<a class="start-btn" href="https://eaglercraft.com/play" target="_blank" rel="noopener noreferrer">🚀 Abrir Juego (Nueva Pestaña)</a>
+<div class="game-title">Pinturillo 2</div>
+<a class="start-btn" href="https://www.pinturillo2.com/" target="_blank" rel="noopener noreferrer">🚀 Abrir Juego</a>
 </div>
 
 <div class="game-card">
-<div class="game-title">PolyTrack</div>
-<a class="start-btn" href="https://app-polytrack.kodub.com/0.5.0/?" target="_blank" rel="noopener noreferrer">🚀 Abrir Juego (Nueva Pestaña)</a>
-</div>
-
-<div class="game-card">
-<div class="game-title">HexGL</div>
-<button class="start-btn" onclick="startGame(this,'https://hexgl.bkcore.com/play/')">▶ Jugar en Pantalla</button>
-<iframe class="game-frame" allowfullscreen></iframe>
-</div>
-
-<div class="game-card">
-<div class="game-title">Plants vs Zombies</div>
-<a class="start-btn" href="https://www.pvz.io/" target="_blank" rel="noopener noreferrer">🚀 Abrir Juego (Nueva Pestaña)</a>
+<div class="game-title">Slither.io</div>
+<a class="start-btn" href="https://slither.io/" target="_blank" rel="noopener noreferrer">🚀 Abrir Juego</a>
 </div>
 
 <div class="game-card">
 <div class="game-title">Agar.io</div>
-<a class="start-btn" href="https://agar.io" target="_blank" rel="noopener noreferrer">🚀 Abrir Juego (Nueva Pestaña)</a>
+<a class="start-btn" href="https://agar.io" target="_blank" rel="noopener noreferrer">🚀 Abrir Juego</a>
 </div>
 
 <div class="game-card">
+<div class="game-title">Krunker.io</div>
+<a class="start-btn" href="https://krunker.io/" target="_blank" rel="noopener noreferrer">🚀 Abrir Juego</a>
+</div>
+
+<div class="game-card">
+<div class="game-title">Smash Karts</div>
+<a class="start-btn" href="https://smashkarts.io/" target="_blank" rel="noopener noreferrer">🚀 Abrir Juego</a>
+</div>
+
+</div>
+
+<!-- CATEGORÍA 3: ACCIÓN Y CARRERAS -->
+<h2 class="category-title">🏎️ Acción, Carreras y Sandbox</h2>
+<div class="game-grid">
+
+<div class="game-card">
+<div class="game-title">Eaglercraft (Minecraft)</div>
+<a class="start-btn" href="https://eaglercraft.com/play" target="_blank" rel="noopener noreferrer">🚀 Abrir Juego</a>
+</div>
+
+<div class="game-card">
+<div class="game-title">PolyTrack</div>
+<a class="start-btn" href="https://app-polytrack.kodub.com/0.5.0/?" target="_blank" rel="noopener noreferrer">🚀 Abrir Juego</a>
+</div>
+
+<div class="game-card">
+<div class="game-title">HexGL</div>
+<button class="start-btn" onclick="startGame(this,'https://hexgl.bkcore.com/play/')">▶ Jugar en pantalla</button>
+</div>
+
+<div class="game-card">
+<div class="game-title">Plants vs Zombies</div>
+<a class="start-btn" href="https://www.pvz.io/" target="_blank" rel="noopener noreferrer">🚀 Abrir Juego</a>
+</div>
+
+</div>
+
+<!-- CATEGORÍA 4: HABILIDAD Y CASUAL -->
+<h2 class="category-title">🧩 Habilidad y Estrategia</h2>
+<div class="game-grid">
+
+<div class="game-card">
 <div class="game-title">Cookie Clicker</div>
-<a class="start-btn" href="https://orteil.dashnet.org/cookieclicker/" target="_blank" rel="noopener noreferrer">🚀 Abrir Juego (Nueva Pestaña)</a>
+<a class="start-btn" href="https://orteil.dashnet.org/cookieclicker/" target="_blank" rel="noopener noreferrer">🚀 Abrir Juego</a>
 </div>
 
 <div class="game-card">
 <div class="game-title">2048</div>
-<button class="start-btn" onclick="startGame(this,'https://play2048.co/')">▶ Jugar en Pantalla</button>
-<iframe class="game-frame" allowfullscreen></iframe>
+<button class="start-btn" onclick="startGame(this,'https://play2048.co/')">▶ Jugar en pantalla</button>
 </div>
 
 </div>
 
 <!-- CÓDIGOS -->
-<h2 class="category-title">🔐 Códigos secretos</h2>
+<h2 class="category-title">🔐 Códigos Secretos</h2>
 
-<div class="game-card">
+<div class="game-card" style="max-width: 600px; margin: auto;">
 
-<input id="codeInput" placeholder="Escribe código secreto">
+<input id="codeInput" placeholder="Escribe tu código secreto aquí">
 
-<button class="start-btn" onclick="redeemCode()">🔑 Canjear</button>
+<button class="start-btn" onclick="redeemCode()" style="margin-top:15px;">🔑 Canjear Código</button>
 
-<p id="progressText" style="margin-top:10px;"></p>
+<p id="progressText" style="margin-top:15px; font-weight:bold; text-align:center;"></p>
 
 <div id="achievementsBox"></div>
 
@@ -229,19 +279,16 @@ padding:20px;
 
 <script>
 
-/* 🎮 JUEGOS */
-function startGame(btn,url){
-const frame=btn.parentElement.querySelector("iframe");
-if(frame){
-frame.style.display="block";
-frame.src=url;
-}
+/* 🎮 JUEGOS EN PANTALLA */
+function startGame(btn, url){
+let frame = document.getElementById("retro-frame");
+frame.style.display = "block";
+frame.src = url;
+frame.scrollIntoView({ behavior: 'smooth' });
 }
 
 /* 🏆 CÓDIGOS + LOGROS */
 const codes = {
-
-/* FURRY */
 "uwu":"🦊 Fursuit Nivel 1",
 "owo":"🐾 Convención Secreta",
 "beans":"🐾 Almohadillas Legendarias",
@@ -251,8 +298,6 @@ const codes = {
 "foxo":"🦊 Espíritu del Zorro",
 "protogen":"🤖 Visitante Cibernético",
 "dragon":"🐉 Escamas Antiguas",
-
-/* GLITCH */
 "gameoverse":"📺 Error del Multiverso",
 "glitch":"🌀 Entre Canales",
 "signal":"⚠️ Señal Corrupta",
@@ -260,24 +305,18 @@ const codes = {
 "vhs":"📼 Archivo Analógico",
 "404tv":"📺 Canal Perdido",
 "corrupt":"💾 Datos Dañados",
-
-/* MEMES */
 "meme":"🗿 Furro Legendario",
 "internet":"😂 Demasiado Internet",
 "cheems":"📸 Coleccionista de Memes",
 "doge":"🐕 Sabiduría Antigua",
 "sus":"🚨 Sospechoso",
 "brainrot":"🧠 Daño de Internet",
-
-/* EXPERIMENTO */
 "changed":"🧪 Sujeto de Pruebas",
 "latex":"⚫ Contacto Inesperado",
 "lab":"🔬 Laboratorio Oculto",
 "sample":"🧫 Muestra Desconocida",
 "containment":"🚪 Zona Sellada",
 "blackgoo":"⚫ Materia Extraña",
-
-/* SECRETOS */
 "secret":"👁️ No Debías Ver Esto",
 "archive":"💾 Archivo Oculto",
 "admin":"🔒 Acceso Administrativo",
@@ -285,8 +324,6 @@ const codes = {
 "easteregg":"🥚 Cazador de Secretos",
 "furrywebgm":"👑 Guardián del Portal",
 "all":"🌌 Maestro de los Secretos",
-
-/* BONUS */
 "konami":"🎮 Código Legendario",
 "void":"🌌 Vacío Total",
 "exit":"🚪 Salida Oculta",
@@ -297,13 +334,13 @@ let unlocked = JSON.parse(localStorage.getItem("fwgm") || "[]");
 
 function redeemCode(){
 
-let code=document.getElementById("codeInput").value.toLowerCase().trim();
+let code = document.getElementById("codeInput").value.toLowerCase().trim();
 
 if(codes[code]){
 
 if(!unlocked.includes(code)){
 unlocked.push(code);
-localStorage.setItem("fwgm",JSON.stringify(unlocked));
+localStorage.setItem("fwgm", JSON.stringify(unlocked));
 }
 
 alert("🏆 "+codes[code]);
@@ -319,23 +356,24 @@ document.getElementById("codeInput").value="";
 
 function render(){
 
-let box=document.getElementById("achievementsBox");
+let box = document.getElementById("achievementsBox");
 
-box.innerHTML="";
+box.innerHTML = "";
 
-unlocked.forEach(c=>{
+unlocked.forEach(c => {
 
-let div=document.createElement("div");
-div.className="game-card";
-div.style.marginTop="10px";
-div.textContent=c+" → "+codes[c];
+let div = document.createElement("div");
+div.className = "game-card";
+div.style.marginTop = "10px";
+div.style.padding = "10px 15px";
+div.textContent = c + " → " + codes[c];
 
 box.appendChild(div);
 
 });
 
-document.getElementById("progressText").textContent=
-"🏆 Logros: "+unlocked.length;
+document.getElementById("progressText").textContent =
+"🏆 Logros Desbloqueados: " + unlocked.length + " / " + Object.keys(codes).length;
 
 }
 
